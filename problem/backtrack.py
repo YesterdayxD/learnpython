@@ -1,4 +1,3 @@
-
 """
 回溯算法的一般思路
 
@@ -15,13 +14,15 @@ def backtrack(路径, 选择列表):
 """
 
 # 设置棋盘规模
-scale=8
+scale = 4
+
 
 def print_queen():
     for i in Queen:
         print(i)
-def find_queen(row):
 
+
+def find_queen(row):
     if row == scale:
         print_queen()
 
@@ -29,12 +30,13 @@ def find_queen(row):
 
         return
     for column in range(scale):
-        if check(row,column):
-            Queen[row][column]=1
-            find_queen(row+1)
-            Queen[row][column]=0
+        if check(row, column):
+            Queen[row][column] = 1
+            find_queen(row + 1)
+            Queen[row][column] = 0
 
-def check(row,column):
+
+def check(row, column):
     for k in range(scale):
         if Queen[k][column] == 1:
             return False
@@ -53,7 +55,35 @@ def check(row,column):
     return True
 
 
-Queen=[[0 for i in range(scale)] for j in range(scale)]
+Queen = [[0 for i in range(scale)] for j in range(scale)]
 
 find_queen(0)
 # print_queen()
+
+###############
+
+import copy
+import math
+
+result = []
+row = [1, 2, 3, 4]
+item = []
+
+
+def backtrack(item, row, ):
+    if len(item) == len(row):
+        # 使用深拷贝，否则 item的变动会改变result，最终导致结果的不对
+        temp = copy.deepcopy(item)
+        result.append(temp)
+        return
+
+    for r_item in row:
+        if r_item not in item:
+            item.append(r_item)
+            backtrack(item, row)
+            item.pop()
+
+
+backtrack(item, row)
+print("最终结果为", result)
+print("理论数量:{} 实际数量: {}".format(math.factorial(len(row)), len(result)))
