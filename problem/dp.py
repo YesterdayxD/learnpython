@@ -33,3 +33,19 @@ for i in range(1, len(G)):
         else:
             F[i][j] = max(F[i - 1][j], F[i - 1][j - P[i]] + G[i])
 print(F)
+
+# 最大子序和
+data = [-2, 1, -3, 4, -1, 2, 1, -5, 4]
+
+
+def max_sub_array(a):
+    f = len(a) * [0]
+    f[0] = a[0]
+    result = f[0]
+    for i in range(1, len(a)):
+        f[i] = a[i] + max(f[i - 1], 0)
+        result = max(f[i], result)
+    return result
+
+
+print(max_sub_array(data))
