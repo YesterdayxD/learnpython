@@ -1,7 +1,9 @@
 import time
+from functools import wraps
 
 
 def time_decorator(a_func):
+    @wraps(a_func)
     def wrap_function(*args, **kwargs):
         start_time = time.time()
 
@@ -9,7 +11,7 @@ def time_decorator(a_func):
 
         end_time = time.time() - start_time
 
-        print("cost_time: {}".format(end_time))
+        print("[Func: {}] cost_time: {}".format(a_func.__name__, end_time))
 
         return result
 
@@ -21,4 +23,5 @@ def test():
     print("hello!")
 
 
-test()
+if __name__ == '__main__':
+    test()
