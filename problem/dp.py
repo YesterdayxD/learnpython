@@ -33,8 +33,9 @@ for i in range(1, len(G)):
         else:
             F[i][j] = max(F[i - 1][j], F[i - 1][j - P[i]] + G[i])
 print(F)
-
-# 最大子序和
+"""
+最大子序和
+"""
 data = [-2, 1, -3, 4, -1, 2, 1, -5, 4]
 
 
@@ -49,3 +50,33 @@ def max_sub_array(a):
 
 
 print(max_sub_array(data))
+
+"""
+最小编辑距离
+"""
+str1 = ""
+str2 = ""
+
+
+def min_edit_distance(str1, str2):
+    I = len(str1) + 1
+    J = len(str2) + 1
+    dp = [[0 for _ in range(J)] for _ in range(I)]
+    print(dp)
+    for i in range(I):
+        dp[i][0] = i
+    for j in range(J):
+        dp[0][j] = j
+    for i in range(1, I):
+        for j in range(1, J):
+            if str1[i - 1] == str2[j - 1]:
+                dp[i][j] = dp[i - 1][j - 1]
+            else:
+                dp[i][j] = min(dp[i - 1][j], dp[i][j - 1],
+                               dp[i - 1][j - 1]) + 1
+                # print(dp[i][j])
+    return dp[I - 1][J - 1]
+
+
+if __name__ == '__main__':
+    print(min_edit_distance("horse", "h"))
