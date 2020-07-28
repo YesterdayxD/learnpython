@@ -78,5 +78,25 @@ def min_edit_distance(str1, str2):
     return dp[I - 1][J - 1]
 
 
+"""
+# 给定字符串 s 和 t ，判断 s 是否为 t 的子序列。字符串 t 可能会很长. 
+#  示例 1: 
+# s = "abc", t = "ahbgdc" 
+# 
+#  返回 true. 
+# 
+#  示例 2: 
+# s = "axc", t = "ahbgdc" 
+# 
+#  返回 false. 
+# 
+def isSubsequence(self, s, t):
+"""
+
+
+def is_subsequence(s, t):
+    return True
+
+
 if __name__ == '__main__':
     print(min_edit_distance("horse", "h"))
