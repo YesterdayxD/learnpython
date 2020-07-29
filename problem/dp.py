@@ -9,6 +9,7 @@ for i in range(len(data)):
             dp[i] = dp[j] + 1
 print(dp)
 # 工人挖矿
+# todo 有问题
 G = [400, 200, 300, 350, 500]
 P = [4, 3, 4, 3, 5]
 # F = [0] * len(G)
@@ -98,5 +99,23 @@ def is_subsequence(s, t):
     return True
 
 
+"""
+bag
+"""
+weight = [3, 2, 5]
+value = [8, 5, 12]
+a = 5
+# f(n, a)=max{f(n-1, a),f(n-1, a-w[i])+v[i]}
+# f(n, 0)=0
+# f(0, a)=v[0] if w[0] < a else 0
+# f(n, a)=f(n-1, a) if a < w[i]
+
+f = [[0 for _ in range(a)] for _ in range(len(weight))]
+for i in range(a):
+    if weight[0] < i:
+        f[0][i] = value[0]
+print("f {}".format(f))
+
 if __name__ == '__main__':
-    print(min_edit_distance("horse", "h"))
+    # print(min_edit_distance("horse", "h"))
+    pass
